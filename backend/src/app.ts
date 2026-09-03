@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
+import testRoutes from "./routes/testRoutes.js";
+
 const app = express();
 
 app.use(
@@ -20,5 +22,7 @@ app.get("/", (_req, res) => {
     message: "Task Manager API is running",
   });
 });
+
+app.use("/api/test", testRoutes);
 
 export default app;
