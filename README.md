@@ -81,6 +81,7 @@ task-flow-final/
 │   │   │   └── task.ts           # Zod task schemas & query validation
 │   │   ├── app.ts                # Express app configuration & middleware
 │   │   └── server.ts             # Server entrypoint
+│   ├── .env.example          # Environment variables template
 │   ├── package.json
 │   └── tsconfig.json
 ├── frontend/
@@ -109,6 +110,7 @@ task-flow-final/
 │   │   │   └── task.ts
 │   │   ├── App.tsx
 │   │   └── main.tsx
+│   ├── .env.example          # Environment variables template
 │   ├── package.json
 │   └── vite.config.ts
 └── README.md
@@ -146,24 +148,44 @@ npm install
 ### 2. Configure Environment Variables
 
 #### Backend (`backend/.env`)
-Create a `.env` file in `backend/`:
+Copy the example environment file and adjust your settings:
 
+```bash
+cd backend
+cp .env.example .env
+```
+
+`backend/.env` contents:
 ```env
+# Database connection string (PostgreSQL)
 DATABASE_URL="postgresql://username:password@localhost:5432/task-manager-prisma"
 
+# JWT Access Token Configuration
 JWT_ACCESS_SECRET="your-super-secret-access-key-minimum-32-chars"
 JWT_ACCESS_EXPIRES_IN="15m"
 
+# JWT Refresh Token Configuration
 JWT_REFRESH_SECRET="your-super-secret-refresh-key-minimum-32-chars"
 JWT_REFRESH_EXPIRES_IN="7d"
 
+# Server Port
 PORT=5000
+
+# Client Application URL (CORS Allowed Origin)
+CLIENT_URL="http://localhost:5173"
 ```
 
 #### Frontend (`frontend/.env`)
-Create a `.env` file in `frontend/`:
+Copy the example environment file:
 
+```bash
+cd frontend
+cp .env.example .env
+```
+
+`frontend/.env` contents:
 ```env
+# Backend API base URL
 VITE_API_URL=http://localhost:5000/api
 ```
 

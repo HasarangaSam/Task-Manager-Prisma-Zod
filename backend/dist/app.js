@@ -1,20 +1,13 @@
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authRoutes.js";
 import taskRoutes from "./routes/taskRoutes.js";
 const app = express();
+const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:5173";
 app.use(cors({
-    origin: (origin, callback) => {
-        const configuredOrigin = process.env.FRONTEND_URL;
-        const isLocalDevelopmentOrigin = process.env.NODE_ENV !== "production" &&
-            (!origin || /^https?:\/\/(localhost|127\.0\.0\.1):\d+$/.test(origin));
-        if (origin === configuredOrigin || isLocalDevelopmentOrigin) {
-            callback(null, true);
-            return;
-        }
-        callback(new Error("Origin is not allowed by CORS"));
-    },
+    origin: CLIENT_URL,
     credentials: true,
 }));
 app.use(express.json());
